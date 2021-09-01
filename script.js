@@ -10,7 +10,7 @@
 //     for (i = forwardWord.length - 1; i >= 0; i--) {
 //         reversedWord += forwardWord[i];
 //     }   if (forwardWord === reversedWord) {
-//         return "The word is a plaindrome!";
+//         return "The word is a palindrome!";
 //     }   else {
 //         return "No palindromes here...";    
 //     }
@@ -32,17 +32,25 @@ function getRandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min); 
   }
 
-  function evenOdd(num) {
-      if (num % 2 == 0) {
-          return true;
-      } else {
-          return false;
-      }
-  }
+function evenOdd(num) {
+    if (num % 2 == 0) {
+        return true;
+    }
+    return false;
+}
 
-let pariDispari = prompt("Scegli, pari o dispari?");
-let numeroUtente = parseInt(prompt("Scegli un numero da 1 a 5"));
-let numeroComputer = getRandomNumber(0, 5);
+let pariDispari;
+let numeroUtente;
+
+while (pariDispari !== "pari" && pariDispari !== "dispari") {
+    pariDispari = prompt("Scegli, pari o dispari? Non puoi scegliere altro!").toLowerCase();
+}
+
+while (numeroUtente <= 0 || numeroUtente > 5 || isNaN(numeroUtente)) {  //  isNaN just checks whether the passed value is not a number or cannot be converted into a Number. Number.isNaN on the other hand only checks if the value is equal to NaN. 
+    numeroUtente = parseInt(prompt("Ora scegli un numero da 1 a 5"));
+}
+
+let numeroComputer = getRandomNumber(1, 5);
 
 let sum = numeroComputer + numeroUtente;
 
@@ -51,6 +59,7 @@ if (evenOdd(sum) && pariDispari === "pari" || !evenOdd(sum) && pariDispari === "
 } else {
     alert("Hai perso...");
 }
+
 
 
 
